@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Project specific directories
+[Vv]anilla/
+[Mm]ono[Mm]od/
+[Oo]utput/
+
 # User-specific files
 *.rsuser
 *.suo
