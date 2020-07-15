@@ -14,12 +14,12 @@ Using The Tools
 
 As of right now, functionality is extremely limited.
 
-If there doesn't exist a file 'input.tas' in the game folder, the game will launch in input recording mode. In this mode, it will create the file 'input.tas' and record all inputs to this file until the game is closed.
+If there doesn't exist a file 'input.tas' in the game folder, the game will launch in input recording mode. In this mode, it will create the file 'input.tas' and record all inputs to this file until the game is closed.  
 If the file 'input.tas' already exists, the game will launch in playback mode. In this mode, user inputs will be ignored and it will instead play back the previously recorded inputs. On finishing replay, it will begin accepting user input again.
 
-Additionally, there are several hotkeys that can be used to control the game speed:
-Numpad 0 - Toggle fast forward
-Numpad 1 - Toggle pause
-Numpad 2 - Advance by one frame (Automatically pauses the game as well)
+Additionally, there are several hotkeys that can be used to control the game speed:  
+Numpad 0 - Toggle fast forward  
+Numpad 1 - Toggle pause  
+Numpad 2 - Advance by one frame (Automatically pauses the game as well)  
 
 When the game launches, it defaults to a paused state. You will have to use one of these hotkeys to make it advance.
