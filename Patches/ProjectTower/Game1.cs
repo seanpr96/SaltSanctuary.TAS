@@ -102,6 +102,8 @@ namespace TAS.Patches.ProjectTower
             {
                 AdvanceFrame();
             }
+
+            IsMouseVisible = true;
         }
 
         /// <summary>

@@ -96,5 +96,19 @@ namespace TAS.Utils
         /// <returns>A new <see cref="GamePadState"/> with the target internal state</returns>
         public GamePadState ConvertToGamePadState(GamePadDeadZone deadZone)
             => GamePadStateExtensions.FromInternalState(this, deadZone);
+
+        public override bool Equals(object obj)
+        {
+            return obj is XINPUT_GAMEPAD pad && this == pad;
+        }
+
+        public static bool operator ==(XINPUT_GAMEPAD left, XINPUT_GAMEPAD right)
+        {
+            return left.Connected == right.Connected && left.Buttons == right.Buttons && left.LeftTrigger == right.LeftTrigger
+                && left.RightTrigger == right.RightTrigger && left.ThumbLX == right.ThumbLX && left.ThumbLY == right.ThumbLY
+                && left.ThumbRX == right.ThumbRX && left.ThumbRY == right.ThumbRY;
+        }
+
+        public static bool operator !=(XINPUT_GAMEPAD left, XINPUT_GAMEPAD right) => !(left == right);
     }
 }
