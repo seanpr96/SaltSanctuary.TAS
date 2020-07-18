@@ -155,6 +155,7 @@ namespace TAS
         private static void OnUpdateNormal()
         {
             UpdateButtons();
+            CurrentFrame++;
         }
 
         private static void UpdateButtons()

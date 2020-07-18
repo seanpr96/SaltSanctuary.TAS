@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using System.Threading;
+using Microsoft.Xna.Framework.Input;
 using TAS.Patches.ProjectTower;
 
 namespace TAS
@@ -10,6 +11,8 @@ namespace TAS
     {
         private static KeyboardState _kb;
         private static KeyboardState _oldKb;
+
+        private static Thread _infoThread;
 
         public static void Initialize()
         {
@@ -35,6 +38,19 @@ namespace TAS
             if (WasPressed(Config.FrameAdvanceKey))
             {
                 Game1.Instance.AdvanceFrame();
+            }
+
+            if (WasPressed(Config.ShowInfoKey))
+            {
+                if (_infoThread != null && _infoThread.IsAlive)
+                {
+                    InfoWindow.NeedsClose = true;
+                }
+                else
+                {
+                    _infoThread = new Thread(() => System.Windows.Forms.Application.Run(new InfoWindow()));
+                    _infoThread.Start();
+                }
             }
 
             _oldKb = _kb;

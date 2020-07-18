@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Threading;
 using Microsoft.Xna.Framework;
@@ -229,12 +230,20 @@ namespace TAS.Patches.ProjectTower
 
             _clock = new GameClockWrapper(this, "clock", typeof(Game));
 
-            graphics.SynchronizeWithVerticalRetrace = false;
-
             // Ensure default binds on game launch for consistency
             for (int i = 0; i < InputMgr.inputProfile.Length; i++)
             {
                 InputMgr.inputProfile[i]?.Reset();
+            }
+
+            // Rename all saves
+            for (int i = 0; i <= 9; i++)
+            {
+                string save = $"./savedata/dat{i}.slv";
+                if (File.Exists(save))
+                {
+                    BackupFile(save);
+                }
             }
         }
 
@@ -251,6 +260,48 @@ namespace TAS.Patches.ProjectTower
                 .Invoke(null, new object[] { GraphicsDevice, Content });
 
             ThreadedContentLoad();
+        }
+
+        private static void BackupFile(string fileName)
+        {
+            if (!File.Exists(fileName))
+            {
+                return;
+            }
+
+            string backupName = fileName + ".bak";
+            if (File.Exists(backupName))
+            {
+                BackupFile(backupName);
+            }
+
+            File.Move(fileName, backupName);
+        }
+
+        public extern void orig_OnExiting(object sender, EventArgs args);
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            // Delete TAS saves, undo backups
+            for (int i = 0; i <= 9; i++)
+            {
+                string fileName = $"./savedata/dat{i}.slv";
+                if (File.Exists(fileName))
+                {
+                    File.Delete(fileName);
+                }
+
+                string backupName = fileName + ".bak";
+                if (File.Exists(backupName))
+                {
+                    File.Move(backupName, fileName);
+                }
+            }
+
+            // Close the info window
+            InfoWindow.NeedsClose = true;
+
+            orig_OnExiting(sender, args);
         }
 
         public delegate void TickEvent();

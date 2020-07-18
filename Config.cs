@@ -26,6 +26,8 @@ namespace TAS
         public static Keys PauseKey = Keys.NumPad1;
         public static Keys FrameAdvanceKey = Keys.NumPad2;
 
+        public static Keys ShowInfoKey = Keys.NumPad9;
+
         public static int Seed = 56;
         public static InputState InitialState = InputState.Normal;
         public static bool StartPaused = true;
