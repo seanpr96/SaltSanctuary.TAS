@@ -110,6 +110,7 @@
       <DependentUpon>InfoWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Utils\GamePadStateExtensions.cs" />
+    <Compile Include="Utils\KeyboardStateExtensions.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\RandomWithLogging.cs" />
     <Compile Include="Utils\ReflectionHelper.cs" />

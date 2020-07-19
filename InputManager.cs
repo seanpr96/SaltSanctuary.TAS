@@ -213,7 +213,7 @@ namespace TAS
         private static void SerializeInput()
         {
             InputFrame frame = default;
-            frame.keyboard = Keyboard.GetState();
+            frame.keyboard = Keyboard.GetState().RemoveHotkeys();
             frame.mouse = Mouse.GetState();
             frame.pads = new XINPUT_GAMEPAD[4];
             for (int i = 0; i < 4; i++)

@@ -19,6 +19,12 @@ namespace TAS
             Game1.Instance.OnTick += CheckButtons;
         }
 
+        public static bool IsHotkey(Keys key)
+        {
+            return key == Config.FastForwardKey || key == Config.PauseKey
+                || key == Config.FrameAdvanceKey || key == Config.ShowInfoKey;
+        }
+
         private static void CheckButtons()
         {
             _kb = InputManager.GetActualKeyboard();
