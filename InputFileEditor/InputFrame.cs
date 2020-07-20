@@ -15,6 +15,8 @@ namespace InputFileEditor
         public bool Mouse4;
         public bool Mouse5;
 
+        public ControllerState[] Pads;
+
         public InputFrame(int length)
         {
             this = default;
@@ -28,6 +30,8 @@ namespace InputFileEditor
             Keys = new XnaKeys[0];
             MouseX = -256;
             MouseY = -256;
+
+            Pads = new ControllerState[4];
         }
     }
 }

@@ -55,6 +55,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControllerConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControllerConfig.Designer.cs">
+      <DependentUpon>ControllerConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControllerState.cs" />
     <Compile Include="InputEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +77,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControllerConfig.resx">
+      <DependentUpon>ControllerConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputEditor.resx">
       <DependentUpon>InputEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +94,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -98,5 +109,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

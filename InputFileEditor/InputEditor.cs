@@ -10,11 +10,14 @@ namespace InputFileEditor
 {
     public partial class InputEditor : Form
     {
-        private List<InputFrame> _frames;
+        private readonly List<InputFrame> _frames;
+        private readonly ControllerConfig[] _pads;
 
         public InputEditor()
         {
             InitializeComponent();
+
+            _pads = new[] { pad1, pad2, pad3, pad4 };
 
             MenuItem save = new MenuItem("Save", SaveToFile, Shortcut.CtrlS);
             MenuItem load = new MenuItem("Load", LoadFromFile, Shortcut.CtrlO);
@@ -75,6 +78,18 @@ namespace InputFileEditor
             frame.Mouse4 = mouse4Box.Checked;
             frame.Mouse5 = mouse5Box.Checked;
 
+            for (int i = 0; i < 4; i++)
+            {
+                frame.Pads[i].Connected = _pads[i].Connected;
+                frame.Pads[i].Buttons = _pads[i].GetButtons();
+                frame.Pads[i].LeftTrigger = _pads[i].LeftTrigger;
+                frame.Pads[i].RightTrigger = _pads[i].RightTrigger;
+                frame.Pads[i].ThumbLX = _pads[i].LX;
+                frame.Pads[i].ThumbLY = _pads[i].LY;
+                frame.Pads[i].ThumbRX = _pads[i].RX;
+                frame.Pads[i].ThumbRY = _pads[i].RY;
+            }
+
             int oldFrameCount = _frames[frameIndex].Length;
             _frames[frameIndex] = frame;
 
@@ -108,6 +123,18 @@ namespace InputFileEditor
             mouseRightBox.Checked = frame.MouseRight;
             mouse4Box.Checked = frame.Mouse4;
             mouse5Box.Checked = frame.Mouse5;
+
+            for (int i = 0; i < 4; i++)
+            {
+                _pads[i].Connected = frame.Pads[i].Connected;
+                _pads[i].SetButtons(frame.Pads[i].Buttons);
+                _pads[i].LeftTrigger = frame.Pads[i].LeftTrigger;
+                _pads[i].RightTrigger = frame.Pads[i].RightTrigger;
+                _pads[i].LX = frame.Pads[i].ThumbLX;
+                _pads[i].LY = frame.Pads[i].ThumbLY;
+                _pads[i].RX = frame.Pads[i].ThumbRX;
+                _pads[i].RY = frame.Pads[i].ThumbRY;
+            }
         }
 
         private void SaveToFile(object sender, EventArgs e)
@@ -154,7 +181,20 @@ namespace InputFileEditor
 
                 for (int i = 0; i < 4; i++)
                 {
-                    writer.Write(false);
+                    writer.Write(frame.Pads[i].Connected);
+
+                    if (!frame.Pads[i].Connected)
+                    {
+                        continue;
+                    }
+
+                    writer.Write(frame.Pads[i].Buttons);
+                    writer.Write(frame.Pads[i].LeftTrigger);
+                    writer.Write(frame.Pads[i].RightTrigger);
+                    writer.Write(frame.Pads[i].ThumbLX);
+                    writer.Write(frame.Pads[i].ThumbLY);
+                    writer.Write(frame.Pads[i].ThumbRX);
+                    writer.Write(frame.Pads[i].ThumbRY);
                 }
             }
         }
@@ -216,24 +256,6 @@ namespace InputFileEditor
             bool xButton1 = (mouseButtons & 0b01000) != 0;
             bool xButton2 = (mouseButtons & 0b10000) != 0;
 
-            // Gamepads
-            for (int i = 0; i < 4; i++)
-            {
-                bool connected = reader.ReadBoolean();
-                if (!connected)
-                {
-                    continue;
-                }
-
-                reader.ReadUInt16();
-                reader.ReadByte();
-                reader.ReadByte();
-                reader.ReadInt16();
-                reader.ReadInt16();
-                reader.ReadInt16();
-                reader.ReadInt16();
-            }
-
             // Create frame
             InputFrame frame = new InputFrame(frames);
             frame.Keys = keys;
@@ -245,6 +267,24 @@ namespace InputFileEditor
             frame.MouseRight = rightButton;
             frame.Mouse4 = xButton1;
             frame.Mouse5 = xButton2;
+
+            // Gamepads
+            for (int i = 0; i < 4; i++)
+            {
+                frame.Pads[i].Connected = reader.ReadBoolean();
+                if (!frame.Pads[i].Connected)
+                {
+                    continue;
+                }
+
+                frame.Pads[i].Buttons = reader.ReadUInt16();
+                frame.Pads[i].LeftTrigger = reader.ReadByte();
+                frame.Pads[i].RightTrigger = reader.ReadByte();
+                frame.Pads[i].ThumbLX = reader.ReadInt16();
+                frame.Pads[i].ThumbLY = reader.ReadInt16();
+                frame.Pads[i].ThumbRX = reader.ReadInt16();
+                frame.Pads[i].ThumbRY = reader.ReadInt16();
+            }
 
             return frame;
         }

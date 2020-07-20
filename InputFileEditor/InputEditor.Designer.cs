@@ -34,25 +34,29 @@
             this.frameLengthLabel = new System.Windows.Forms.Label();
             this.frameLengthInput = new System.Windows.Forms.NumericUpDown();
             this.keyboard = new System.Windows.Forms.TabPage();
+            this.removeKeyButton = new System.Windows.Forms.Button();
+            this.addKeyButton = new System.Windows.Forms.Button();
             this.keysBox = new System.Windows.Forms.ListBox();
             this.mouse = new System.Windows.Forms.TabPage();
-            this.gamepad1 = new System.Windows.Forms.TabPage();
-            this.gamepad2 = new System.Windows.Forms.TabPage();
-            this.gamepad3 = new System.Windows.Forms.TabPage();
-            this.gamepad4 = new System.Windows.Forms.TabPage();
-            this.addKeyButton = new System.Windows.Forms.Button();
-            this.removeKeyButton = new System.Windows.Forms.Button();
-            this.mouseXInput = new System.Windows.Forms.NumericUpDown();
-            this.mouseYInput = new System.Windows.Forms.NumericUpDown();
-            this.mouseScrollInput = new System.Windows.Forms.NumericUpDown();
-            this.mouseXLabel = new System.Windows.Forms.Label();
-            this.mouseYLabel = new System.Windows.Forms.Label();
-            this.mouseScrollLabel = new System.Windows.Forms.Label();
-            this.mouseLeftBox = new System.Windows.Forms.CheckBox();
-            this.mouseMiddleBox = new System.Windows.Forms.CheckBox();
-            this.mouseRightBox = new System.Windows.Forms.CheckBox();
-            this.mouse4Box = new System.Windows.Forms.CheckBox();
             this.mouse5Box = new System.Windows.Forms.CheckBox();
+            this.mouse4Box = new System.Windows.Forms.CheckBox();
+            this.mouseRightBox = new System.Windows.Forms.CheckBox();
+            this.mouseMiddleBox = new System.Windows.Forms.CheckBox();
+            this.mouseLeftBox = new System.Windows.Forms.CheckBox();
+            this.mouseScrollLabel = new System.Windows.Forms.Label();
+            this.mouseYLabel = new System.Windows.Forms.Label();
+            this.mouseXLabel = new System.Windows.Forms.Label();
+            this.mouseScrollInput = new System.Windows.Forms.NumericUpDown();
+            this.mouseYInput = new System.Windows.Forms.NumericUpDown();
+            this.mouseXInput = new System.Windows.Forms.NumericUpDown();
+            this.gamepad1 = new System.Windows.Forms.TabPage();
+            this.pad1 = new InputFileEditor.ControllerConfig();
+            this.gamepad2 = new System.Windows.Forms.TabPage();
+            this.pad2 = new InputFileEditor.ControllerConfig();
+            this.gamepad3 = new System.Windows.Forms.TabPage();
+            this.pad3 = new InputFileEditor.ControllerConfig();
+            this.gamepad4 = new System.Windows.Forms.TabPage();
+            this.pad4 = new InputFileEditor.ControllerConfig();
             this.addFrameButton = new System.Windows.Forms.Button();
             this.removeFrameButton = new System.Windows.Forms.Button();
             this.framePageControl.SuspendLayout();
@@ -60,9 +64,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.frameLengthInput)).BeginInit();
             this.keyboard.SuspendLayout();
             this.mouse.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mouseXInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mouseYInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mouseScrollInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mouseYInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mouseXInput)).BeginInit();
+            this.gamepad1.SuspendLayout();
+            this.gamepad2.SuspendLayout();
+            this.gamepad3.SuspendLayout();
+            this.gamepad4.SuspendLayout();
             this.SuspendLayout();
             // 
             // frameBox
@@ -149,6 +157,26 @@
             this.keyboard.Text = "Keyboard";
             this.keyboard.UseVisualStyleBackColor = true;
             // 
+            // removeKeyButton
+            // 
+            this.removeKeyButton.Location = new System.Drawing.Point(6, 371);
+            this.removeKeyButton.Name = "removeKeyButton";
+            this.removeKeyButton.Size = new System.Drawing.Size(119, 23);
+            this.removeKeyButton.TabIndex = 2;
+            this.removeKeyButton.Text = "Remove Key";
+            this.removeKeyButton.UseVisualStyleBackColor = true;
+            this.removeKeyButton.Click += new System.EventHandler(this.removeKeyButton_Click);
+            // 
+            // addKeyButton
+            // 
+            this.addKeyButton.Location = new System.Drawing.Point(6, 342);
+            this.addKeyButton.Name = "addKeyButton";
+            this.addKeyButton.Size = new System.Drawing.Size(119, 23);
+            this.addKeyButton.TabIndex = 1;
+            this.addKeyButton.Text = "Add Key";
+            this.addKeyButton.UseVisualStyleBackColor = true;
+            this.addKeyButton.Click += new System.EventHandler(this.addKeyButton_Click);
+            // 
             // keysBox
             // 
             this.keysBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -179,97 +207,90 @@
             this.mouse.Text = "Mouse";
             this.mouse.UseVisualStyleBackColor = true;
             // 
-            // gamepad1
+            // mouse5Box
             // 
-            this.gamepad1.Location = new System.Drawing.Point(4, 22);
-            this.gamepad1.Name = "gamepad1";
-            this.gamepad1.Size = new System.Drawing.Size(414, 400);
-            this.gamepad1.TabIndex = 3;
-            this.gamepad1.Text = "Gamepad 1";
-            this.gamepad1.UseVisualStyleBackColor = true;
+            this.mouse5Box.AutoSize = true;
+            this.mouse5Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouse5Box.Location = new System.Drawing.Point(10, 251);
+            this.mouse5Box.Name = "mouse5Box";
+            this.mouse5Box.Size = new System.Drawing.Size(89, 24);
+            this.mouse5Box.TabIndex = 10;
+            this.mouse5Box.Text = "Mouse 5";
+            this.mouse5Box.UseVisualStyleBackColor = true;
             // 
-            // gamepad2
+            // mouse4Box
             // 
-            this.gamepad2.Location = new System.Drawing.Point(4, 22);
-            this.gamepad2.Name = "gamepad2";
-            this.gamepad2.Size = new System.Drawing.Size(414, 400);
-            this.gamepad2.TabIndex = 4;
-            this.gamepad2.Text = "Gamepad 2";
-            this.gamepad2.UseVisualStyleBackColor = true;
+            this.mouse4Box.AutoSize = true;
+            this.mouse4Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouse4Box.Location = new System.Drawing.Point(10, 221);
+            this.mouse4Box.Name = "mouse4Box";
+            this.mouse4Box.Size = new System.Drawing.Size(89, 24);
+            this.mouse4Box.TabIndex = 9;
+            this.mouse4Box.Text = "Mouse 4";
+            this.mouse4Box.UseVisualStyleBackColor = true;
             // 
-            // gamepad3
+            // mouseRightBox
             // 
-            this.gamepad3.Location = new System.Drawing.Point(4, 22);
-            this.gamepad3.Name = "gamepad3";
-            this.gamepad3.Size = new System.Drawing.Size(414, 400);
-            this.gamepad3.TabIndex = 5;
-            this.gamepad3.Text = "Gamepad 3";
-            this.gamepad3.UseVisualStyleBackColor = true;
+            this.mouseRightBox.AutoSize = true;
+            this.mouseRightBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseRightBox.Location = new System.Drawing.Point(10, 191);
+            this.mouseRightBox.Name = "mouseRightBox";
+            this.mouseRightBox.Size = new System.Drawing.Size(118, 24);
+            this.mouseRightBox.TabIndex = 8;
+            this.mouseRightBox.Text = "Mouse Right";
+            this.mouseRightBox.UseVisualStyleBackColor = true;
             // 
-            // gamepad4
+            // mouseMiddleBox
             // 
-            this.gamepad4.Location = new System.Drawing.Point(4, 22);
-            this.gamepad4.Name = "gamepad4";
-            this.gamepad4.Size = new System.Drawing.Size(414, 400);
-            this.gamepad4.TabIndex = 6;
-            this.gamepad4.Text = "Gamepad 4";
-            this.gamepad4.UseVisualStyleBackColor = true;
+            this.mouseMiddleBox.AutoSize = true;
+            this.mouseMiddleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseMiddleBox.Location = new System.Drawing.Point(10, 161);
+            this.mouseMiddleBox.Name = "mouseMiddleBox";
+            this.mouseMiddleBox.Size = new System.Drawing.Size(126, 24);
+            this.mouseMiddleBox.TabIndex = 7;
+            this.mouseMiddleBox.Text = "Mouse Middle";
+            this.mouseMiddleBox.UseVisualStyleBackColor = true;
             // 
-            // addKeyButton
+            // mouseLeftBox
             // 
-            this.addKeyButton.Location = new System.Drawing.Point(6, 342);
-            this.addKeyButton.Name = "addKeyButton";
-            this.addKeyButton.Size = new System.Drawing.Size(119, 23);
-            this.addKeyButton.TabIndex = 1;
-            this.addKeyButton.Text = "Add Key";
-            this.addKeyButton.UseVisualStyleBackColor = true;
-            this.addKeyButton.Click += new System.EventHandler(this.addKeyButton_Click);
+            this.mouseLeftBox.AutoSize = true;
+            this.mouseLeftBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseLeftBox.Location = new System.Drawing.Point(10, 131);
+            this.mouseLeftBox.Name = "mouseLeftBox";
+            this.mouseLeftBox.Size = new System.Drawing.Size(108, 24);
+            this.mouseLeftBox.TabIndex = 6;
+            this.mouseLeftBox.Text = "Mouse Left";
+            this.mouseLeftBox.UseVisualStyleBackColor = true;
             // 
-            // removeKeyButton
+            // mouseScrollLabel
             // 
-            this.removeKeyButton.Location = new System.Drawing.Point(6, 371);
-            this.removeKeyButton.Name = "removeKeyButton";
-            this.removeKeyButton.Size = new System.Drawing.Size(119, 23);
-            this.removeKeyButton.TabIndex = 2;
-            this.removeKeyButton.Text = "Remove Key";
-            this.removeKeyButton.UseVisualStyleBackColor = true;
-            this.removeKeyButton.Click += new System.EventHandler(this.removeKeyButton_Click);
+            this.mouseScrollLabel.AutoSize = true;
+            this.mouseScrollLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseScrollLabel.Location = new System.Drawing.Point(6, 72);
+            this.mouseScrollLabel.Name = "mouseScrollLabel";
+            this.mouseScrollLabel.Size = new System.Drawing.Size(52, 20);
+            this.mouseScrollLabel.TabIndex = 5;
+            this.mouseScrollLabel.Text = "Scroll:";
             // 
-            // mouseXInput
+            // mouseYLabel
             // 
-            this.mouseXInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseXInput.Location = new System.Drawing.Point(64, 6);
-            this.mouseXInput.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.mouseXInput.Minimum = new decimal(new int[] {
-            -2147483648,
-            0,
-            0,
-            -2147483648});
-            this.mouseXInput.Name = "mouseXInput";
-            this.mouseXInput.Size = new System.Drawing.Size(120, 26);
-            this.mouseXInput.TabIndex = 0;
+            this.mouseYLabel.AutoSize = true;
+            this.mouseYLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseYLabel.Location = new System.Drawing.Point(6, 40);
+            this.mouseYLabel.Name = "mouseYLabel";
+            this.mouseYLabel.Size = new System.Drawing.Size(24, 20);
+            this.mouseYLabel.TabIndex = 4;
+            this.mouseYLabel.Text = "Y:";
             // 
-            // mouseYInput
+            // mouseXLabel
             // 
-            this.mouseYInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseYInput.Location = new System.Drawing.Point(64, 38);
-            this.mouseYInput.Maximum = new decimal(new int[] {
-            2147483647,
-            0,
-            0,
-            0});
-            this.mouseYInput.Minimum = new decimal(new int[] {
-            -2147483648,
-            0,
-            0,
-            -2147483648});
-            this.mouseYInput.Name = "mouseYInput";
-            this.mouseYInput.Size = new System.Drawing.Size(120, 26);
-            this.mouseYInput.TabIndex = 1;
+            this.mouseXLabel.AutoSize = true;
+            this.mouseXLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseXLabel.Location = new System.Drawing.Point(6, 8);
+            this.mouseXLabel.Name = "mouseXLabel";
+            this.mouseXLabel.Size = new System.Drawing.Size(24, 20);
+            this.mouseXLabel.TabIndex = 3;
+            this.mouseXLabel.Text = "X:";
             // 
             // mouseScrollInput
             // 
@@ -289,90 +310,109 @@
             this.mouseScrollInput.Size = new System.Drawing.Size(120, 26);
             this.mouseScrollInput.TabIndex = 2;
             // 
-            // mouseXLabel
+            // mouseYInput
             // 
-            this.mouseXLabel.AutoSize = true;
-            this.mouseXLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseXLabel.Location = new System.Drawing.Point(6, 8);
-            this.mouseXLabel.Name = "mouseXLabel";
-            this.mouseXLabel.Size = new System.Drawing.Size(24, 20);
-            this.mouseXLabel.TabIndex = 3;
-            this.mouseXLabel.Text = "X:";
+            this.mouseYInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseYInput.Location = new System.Drawing.Point(64, 38);
+            this.mouseYInput.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.mouseYInput.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.mouseYInput.Name = "mouseYInput";
+            this.mouseYInput.Size = new System.Drawing.Size(120, 26);
+            this.mouseYInput.TabIndex = 1;
             // 
-            // mouseYLabel
+            // mouseXInput
             // 
-            this.mouseYLabel.AutoSize = true;
-            this.mouseYLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseYLabel.Location = new System.Drawing.Point(6, 40);
-            this.mouseYLabel.Name = "mouseYLabel";
-            this.mouseYLabel.Size = new System.Drawing.Size(24, 20);
-            this.mouseYLabel.TabIndex = 4;
-            this.mouseYLabel.Text = "Y:";
+            this.mouseXInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.mouseXInput.Location = new System.Drawing.Point(64, 6);
+            this.mouseXInput.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.mouseXInput.Minimum = new decimal(new int[] {
+            -2147483648,
+            0,
+            0,
+            -2147483648});
+            this.mouseXInput.Name = "mouseXInput";
+            this.mouseXInput.Size = new System.Drawing.Size(120, 26);
+            this.mouseXInput.TabIndex = 0;
             // 
-            // mouseScrollLabel
+            // gamepad1
             // 
-            this.mouseScrollLabel.AutoSize = true;
-            this.mouseScrollLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseScrollLabel.Location = new System.Drawing.Point(6, 72);
-            this.mouseScrollLabel.Name = "mouseScrollLabel";
-            this.mouseScrollLabel.Size = new System.Drawing.Size(52, 20);
-            this.mouseScrollLabel.TabIndex = 5;
-            this.mouseScrollLabel.Text = "Scroll:";
+            this.gamepad1.Controls.Add(this.pad1);
+            this.gamepad1.Location = new System.Drawing.Point(4, 22);
+            this.gamepad1.Name = "gamepad1";
+            this.gamepad1.Size = new System.Drawing.Size(414, 400);
+            this.gamepad1.TabIndex = 3;
+            this.gamepad1.Text = "Gamepad 1";
+            this.gamepad1.UseVisualStyleBackColor = true;
             // 
-            // mouseLeftBox
+            // pad1
             // 
-            this.mouseLeftBox.AutoSize = true;
-            this.mouseLeftBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseLeftBox.Location = new System.Drawing.Point(10, 131);
-            this.mouseLeftBox.Name = "mouseLeftBox";
-            this.mouseLeftBox.Size = new System.Drawing.Size(108, 24);
-            this.mouseLeftBox.TabIndex = 6;
-            this.mouseLeftBox.Text = "Mouse Left";
-            this.mouseLeftBox.UseVisualStyleBackColor = true;
+            this.pad1.Location = new System.Drawing.Point(0, 0);
+            this.pad1.Name = "pad1";
+            this.pad1.Size = new System.Drawing.Size(414, 402);
+            this.pad1.TabIndex = 0;
             // 
-            // mouseMiddleBox
+            // gamepad2
             // 
-            this.mouseMiddleBox.AutoSize = true;
-            this.mouseMiddleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseMiddleBox.Location = new System.Drawing.Point(10, 161);
-            this.mouseMiddleBox.Name = "mouseMiddleBox";
-            this.mouseMiddleBox.Size = new System.Drawing.Size(126, 24);
-            this.mouseMiddleBox.TabIndex = 7;
-            this.mouseMiddleBox.Text = "Mouse Middle";
-            this.mouseMiddleBox.UseVisualStyleBackColor = true;
+            this.gamepad2.Controls.Add(this.pad2);
+            this.gamepad2.Location = new System.Drawing.Point(4, 22);
+            this.gamepad2.Name = "gamepad2";
+            this.gamepad2.Size = new System.Drawing.Size(414, 400);
+            this.gamepad2.TabIndex = 4;
+            this.gamepad2.Text = "Gamepad 2";
+            this.gamepad2.UseVisualStyleBackColor = true;
             // 
-            // mouseRightBox
+            // pad2
             // 
-            this.mouseRightBox.AutoSize = true;
-            this.mouseRightBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouseRightBox.Location = new System.Drawing.Point(10, 191);
-            this.mouseRightBox.Name = "mouseRightBox";
-            this.mouseRightBox.Size = new System.Drawing.Size(118, 24);
-            this.mouseRightBox.TabIndex = 8;
-            this.mouseRightBox.Text = "Mouse Right";
-            this.mouseRightBox.UseVisualStyleBackColor = true;
+            this.pad2.Location = new System.Drawing.Point(0, 0);
+            this.pad2.Name = "pad2";
+            this.pad2.Size = new System.Drawing.Size(414, 402);
+            this.pad2.TabIndex = 1;
             // 
-            // mouse4Box
+            // gamepad3
             // 
-            this.mouse4Box.AutoSize = true;
-            this.mouse4Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouse4Box.Location = new System.Drawing.Point(10, 221);
-            this.mouse4Box.Name = "mouse4Box";
-            this.mouse4Box.Size = new System.Drawing.Size(89, 24);
-            this.mouse4Box.TabIndex = 9;
-            this.mouse4Box.Text = "Mouse 4";
-            this.mouse4Box.UseVisualStyleBackColor = true;
+            this.gamepad3.Controls.Add(this.pad3);
+            this.gamepad3.Location = new System.Drawing.Point(4, 22);
+            this.gamepad3.Name = "gamepad3";
+            this.gamepad3.Size = new System.Drawing.Size(414, 400);
+            this.gamepad3.TabIndex = 5;
+            this.gamepad3.Text = "Gamepad 3";
+            this.gamepad3.UseVisualStyleBackColor = true;
             // 
-            // mouse5Box
+            // pad3
             // 
-            this.mouse5Box.AutoSize = true;
-            this.mouse5Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.mouse5Box.Location = new System.Drawing.Point(10, 251);
-            this.mouse5Box.Name = "mouse5Box";
-            this.mouse5Box.Size = new System.Drawing.Size(89, 24);
-            this.mouse5Box.TabIndex = 10;
-            this.mouse5Box.Text = "Mouse 5";
-            this.mouse5Box.UseVisualStyleBackColor = true;
+            this.pad3.Location = new System.Drawing.Point(0, 0);
+            this.pad3.Name = "pad3";
+            this.pad3.Size = new System.Drawing.Size(414, 402);
+            this.pad3.TabIndex = 1;
+            // 
+            // gamepad4
+            // 
+            this.gamepad4.Controls.Add(this.pad4);
+            this.gamepad4.Location = new System.Drawing.Point(4, 22);
+            this.gamepad4.Name = "gamepad4";
+            this.gamepad4.Size = new System.Drawing.Size(414, 400);
+            this.gamepad4.TabIndex = 6;
+            this.gamepad4.Text = "Gamepad 4";
+            this.gamepad4.UseVisualStyleBackColor = true;
+            // 
+            // pad4
+            // 
+            this.pad4.Location = new System.Drawing.Point(0, 0);
+            this.pad4.Name = "pad4";
+            this.pad4.Size = new System.Drawing.Size(414, 402);
+            this.pad4.TabIndex = 1;
             // 
             // addFrameButton
             // 
@@ -413,9 +453,13 @@
             this.keyboard.ResumeLayout(false);
             this.mouse.ResumeLayout(false);
             this.mouse.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mouseXInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mouseYInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mouseScrollInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mouseYInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mouseXInput)).EndInit();
+            this.gamepad1.ResumeLayout(false);
+            this.gamepad2.ResumeLayout(false);
+            this.gamepad3.ResumeLayout(false);
+            this.gamepad4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -449,6 +493,10 @@
         private System.Windows.Forms.CheckBox mouseMiddleBox;
         private System.Windows.Forms.Button addFrameButton;
         private System.Windows.Forms.Button removeFrameButton;
+        private ControllerConfig pad1;
+        private ControllerConfig pad2;
+        private ControllerConfig pad3;
+        private ControllerConfig pad4;
     }
 }
 
